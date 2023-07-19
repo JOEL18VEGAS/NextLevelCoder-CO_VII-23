@@ -1,72 +1,75 @@
-import pygame
+# Third Party Imports
+import pygame.gfxdraw
 import os
+
 
 # Global Constants
 TITLE = "Next Level Coder CO"
 SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1100
+SCREEN_WIDTH = 1000
 FPS = 30
+GRAVITY = 0.8
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
-
-# Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
+# Dinosaur Constants.
+DINOS_INITIAL_POSITION = [[80, SCREEN_HEIGHT - 100],[200, 500]]
+
+# Background Image.
+BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/background_dino.gif'))
+
+# Floor Image.
+FLOOR_IMG = pygame.image.load(os.path.join(IMG_DIR, "Other/floor_one.png"))
+
+# Controllers.
+CONTROLS = (
+        # Player 1 wasd
+        {
+            "jump": pygame.K_w,
+            "duck": pygame.K_s,
+            "left": pygame.K_a,
+            "right": pygame.K_d,
+        },
+        # Player 2 arrows
+        {
+            "jump": pygame.K_UP,
+            "duck": pygame.K_DOWN,
+            "left": pygame.K_LEFT,
+            "right": pygame.K_RIGHT,
+        },
+    )
+
+# To be removed...
 RUNNING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+    # Player 1
+    (pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/run_one.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/run_two.png")),),
+    # Player 2
+    (pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/mort/base/run_one.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/mort/base/run_two.png")),)
+] # Remove this...
 
-RUNNING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+# Player 1 Assets.
+PLAYER_1 = {
+    "RUNNING": [
+        pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/run_one.png")),
+        pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/run_two.png")),
+    ],
+    "DUCKING": pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/duck.png")),
+    # "MOVEMENT": {
+    #     # "LEFT": pygame.image.load(os.path.join(IMG_DIR, "Dinos/male/vita/base/move_left.png")),
+    # }
+}
 
-RUNNING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+# Obstacles or Enemies Assets.
+ENEMIES = {
+    "EGGS": [
+        pygame.image.load(os.path.join(IMG_DIR, "EggEnemy/egg_one.png")),
+    ],
+    "ASTEROID": [
+        pygame.image.load(os.path.join(IMG_DIR, "Asteroid/asteroid_one.png")),
+    ],
+}
 
-JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
-JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
-JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
-
-DUCKING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
-
-DUCKING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
-
-DUCKING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
-
-SMALL_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus3.png")),
-]
-LARGE_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
-]
-
-BIRD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
-]
-
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
-SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
-HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
-
-BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
-
-HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
