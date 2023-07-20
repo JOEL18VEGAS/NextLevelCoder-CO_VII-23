@@ -15,8 +15,7 @@ class Egg(Obstacle):
         # Call the constructor of the parent class.
         super().__init__(selected_image)
         # Set the fix y position of the egg. ( in progress )
-        self.rect.y = 230
-
+        self.rect.y = 400
 
 
 

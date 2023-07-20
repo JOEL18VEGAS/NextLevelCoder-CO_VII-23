@@ -26,6 +26,7 @@ class Dinosaur(Sprite):
         self.max_jumps = 2
         self.jumps_left = self.max_jumps
         self.screen = screen
+        self.rect = self.image.get_rect()
 
     # Update the dinosaur.
     def update(self, user_input):

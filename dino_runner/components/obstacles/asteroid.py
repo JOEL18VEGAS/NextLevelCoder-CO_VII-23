@@ -1,25 +1,22 @@
+# Third party imports.
+import random
+
 # Local imports.
-from dino_runner.components.obstacles.obstacle import Obstacle
-from dino_runner.utils.constants import SCREEN_WIDTH
+from ...utils.constants import ENEMIES
+from .obstacle import Obstacle
 
-
-# Asteroid class. ( in progress )
+# Asteroid class.
 class Asteroid(Obstacle):
 
     # Constructor.
-    def __init__(self, image):
-        self.image = image
-        self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH
-
-    # Update Method. This method is called automatically by the update() method in the main game loop.
-    def update(self):
-        pass
-
-    # Draw Method. This method is called automatically by the draw() method in the main game loop.
-    def draw(self, screen):
-        pass
-
-    # Collision Method. This method is called when the dinosaur collides with an obstacle.
-    def collide(self, dinosaur):
-        pass
+    def __init__(self):
+        # Select a random image from the list of asteroid images.
+        selected_image = random.choice(ENEMIES['ASTEROID'])
+        # Call the constructor of the parent class.
+        super().__init__(selected_image)
+        # Set the random position of the asteroid.
+        self.rect.x = random.randint(100, 900)
+        # Set the y position of the meteorite up the screen.
+        self.rect.y = -self.rect.height
+        # Set the vertical position of the asteroid.
+        self.vertical_position = True

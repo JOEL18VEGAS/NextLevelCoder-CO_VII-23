@@ -8,6 +8,9 @@ class Player(Dinosaur):
     def __init__(self, screen, position, images):
         super().__init__(screen=screen, position=position, images=images)
         self.score = 0
+        self.has_shield = False
+        self.lives = 3
+        self.coins = 0
         self.is_alive = True
         self.name = 'player1'
         self.images = images
